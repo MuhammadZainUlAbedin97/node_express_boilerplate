@@ -20,6 +20,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const connectDB = require("./db/connect");
 
 // import routes
+const authRouter = require("./routes/authRoutes");
+const userRouter = require("./routes/userRoutes");
 
 // import middleware
 const notFoundMiddleware = require("./middleware/not-found");
@@ -36,6 +38,8 @@ app.use(morgan("tiny"));
 app.use("/hello", (req, res) => {
 	res.send("Hello World");
 });
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 // error handling middlewares
 app.use(notFoundMiddleware);
